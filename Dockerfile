@@ -1,15 +1,18 @@
 # Usamos una imagen base de PHP
 FROM php:8.0-apache
 
-# Cambiar el DocumentRoot de Apache para que apunte a la carpeta public
-RUN sed -i 's|/var/www/html|/var/www/html/public|' /etc/apache2/sites-available/000-default.conf
+# Habilitar mod_rewrite y configurar DocumentRoot en /public
+USER root
+RUN a2enmod rewrite \
+    && sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf \
+    && echo "<Directory /var/www/html>\n\
+        AllowOverride All\n\
+        Require all granted\n\
+    </Directory>" >> /etc/apache2/apache2.conf \
+    && service apache2 restart
 
 # Crear un usuario no root
 RUN useradd -ms /bin/bash appuser
-
-# Habilitar mod_rewrite y otras configuraciones necesarias como root
-USER root
-RUN a2enmod rewrite
 
 # Instalar dependencias de PHP necesarias para tu proyecto
 RUN apt-get update && apt-get install -y \
