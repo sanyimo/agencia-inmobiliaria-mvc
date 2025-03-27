@@ -1,4 +1,7 @@
-Options -MultiViews
+# Asegurarse de que Apache encuentre el índice correcto
+DirectoryIndex index.php index.html
+
+
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [QSA,L]
