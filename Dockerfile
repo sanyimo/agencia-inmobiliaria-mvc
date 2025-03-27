@@ -22,7 +22,8 @@ RUN apt-get update && apt-get install -y \
     libwebp-dev \
     libavif-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd zip pdo pdo_mysql
+    && docker-php-ext-install gd zip pdo pdo_mysql mysqli
+
 
 # Instalamos Node.js y npm
 RUN apt-get update && apt-get install -y \
