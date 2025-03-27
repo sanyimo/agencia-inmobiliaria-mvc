@@ -1,6 +1,9 @@
 # Usamos una imagen base de PHP
 FROM php:8.0-apache
 
+# Cambiar el DocumentRoot de Apache para que apunte a la carpeta public
+RUN sed -i 's|/var/www/html|/var/www/html/public|' /etc/apache2/sites-available/000-default.conf
+
 # Crear un usuario no root
 RUN useradd -ms /bin/bash appuser
 
