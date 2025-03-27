@@ -59,7 +59,7 @@ COPY . /var/www/html/
 
 # Cambiar la propiedad de los directorios clave para que Apache tenga acceso
 USER root
-RUN chown -R www-data:www-data /var/www/html
+RUN chown -R www-data:www-data /var/www/html/public
 
 # Configurar el contenedor para exponer el puerto 80 (por defecto en Apache)
 EXPOSE 80
