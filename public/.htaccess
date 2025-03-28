@@ -1,5 +1,8 @@
 # Asegurarse de que Apache encuentre el índice correcto
 DirectoryIndex index.php
-RewriteEngine On
 
-RewriteRule ^ index.php [QSA,L]
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.*)$ index.php [QSA,L]
