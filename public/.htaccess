@@ -1,14 +1,8 @@
 # Asegurarse de que Apache encuentre el índice correcto
-DirectoryIndex public/index.php
+DirectoryIndex index.php
+
 
 RewriteEngine On
-
-# Permitir el acceso a archivos y directorios existentes (en la raíz del proyecto o cualquier otro lugar)
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
-
-# Redirigir todas las demás solicitudes a public/index.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ public/index.php [QSA,L]
+RewriteRule ^(.*)$ index.php [QSA,L]
