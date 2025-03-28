@@ -19,5 +19,10 @@
             "MVC\\": "./",
             "Controllers\\": "./controllers"
         }
+    },
+    "config": {
+        "platform": {
+            "php": "8.0.0"
+        }
     }
 }
